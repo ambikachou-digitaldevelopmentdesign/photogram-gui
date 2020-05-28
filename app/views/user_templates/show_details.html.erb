@@ -1,0 +1,4 @@
+<h1><%= @user.username %></h1>
+
+
+<h2>Own Photos (<%= Photo.where(:owner_id => @user.id).count %>)</h2>
