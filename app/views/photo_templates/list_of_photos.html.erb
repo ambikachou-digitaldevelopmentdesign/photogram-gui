@@ -1,0 +1,50 @@
+<h1>List of photos</h1>
+
+<!-- Here's the form -->
+<form>
+  <label for="browser_image">Image</label>
+  <input id="browser_image" placeholder="Enter a URL for the image">
+  <label for="browser_caption">Caption</label>
+  <input id="browser_caption" placeholder="Enter a caption for the photo...">
+  <label for="browser_owner_id">Owner ID</label>
+  <input id="browser_owner_id" placeholder="Enter an ID for a user">
+  <button>Add photo</button>
+</form>
+
+
+<!-- Here's the table -->
+<table border="1">
+  <tr>
+    <th>Image</th>
+    <th>Caption</th>
+    <th>Owner</th>
+    <th>Posted</th>
+    <th></th>
+  </tr>
+
+  <% @all_photos.each do |a_photo| %>
+    <tr>
+      <td>
+        <image src=<%= a_photo.image %>>
+      </td>
+
+      <td>
+        <%= a_photo.caption %>
+      </td>
+
+      <td>
+        <%= User.where({ :id => a_photo.owner_id })[0].username %>
+      </td>
+
+      <td>
+        <%= a_photo.created_at %>
+      </td>
+
+      <td>
+        <a href="/photos/<%= a_photo.id %>">
+          Show details
+        </a>
+      </td>
+    </tr>
+  <% end %>
+</table>
