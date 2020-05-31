@@ -16,8 +16,7 @@ class UsersController < ApplicationController
     new_user = User.new
     new_user.username = new_user_username
     new_user.save
-    @user = new_user
-    render({ :template => "user_templates/show_details.html.erb" })
+    redirect_to("/users/" + new_user_username)
   end
 
   def update_row
