@@ -1,4 +1,16 @@
 <h1><%= @user.username %></h1>
 
+<dl>
+  <dt>ID</dt>
+  <dd><%= @user.id %></dd>
+  <dt>Edit user</dt>
+  <dd>
+    <form action="/update_username">
+      <label for="new_username">Username</label>
+      <input id="new_username" type="text" name="new_username" name="old_username">
+      <button>Update user</button>
+    </form>
+  </dd>
+</dl>
 
 <h2>Own Photos (<%= Photo.where(:owner_id => @user.id).count %>)</h2>
