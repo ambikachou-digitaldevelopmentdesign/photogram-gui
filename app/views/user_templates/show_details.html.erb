@@ -7,10 +7,49 @@
   <dd>
     <form action="/update_username">
       <label for="new_username">Username</label>
-      <input id="new_username" type="text" name="new_username" name="old_username">
+      <input id="new_username" type="text" name="new_username">
       <button>Update user</button>
     </form>
   </dd>
 </dl>
 
-<h2>Own Photos (<%= Photo.where(:owner_id => @user.id).count %>)</h2>
+<% this_users_photos = Photo.where(:owner_id => @user.id) %>
+
+<h2>Own Photos (<%= this_users_photos.count %>)</h2>
+
+<!-- Here's the table -->
+<table border="1">
+  <tr>
+    <th>Image</th>
+    <th>Caption</th>
+    <th>Owner</th>
+    <th>Posted</th>
+    <th></th>
+  </tr>
+
+  <% this_users_photos.each do |a_photo| %>
+    <tr>
+      <td>
+        <image src=<%= a_photo.image %>>
+      </td>
+
+      <td>
+        <%= a_photo.caption %>
+      </td>
+
+      <td>
+        <%= User.where({ :id => a_photo.owner_id })[0].username %>
+      </td>
+
+      <td>
+        <%= a_photo.created_at %>
+      </td>
+
+      <td>
+        <a href="/photos/<%= a_photo.id %>">
+          Show details
+        </a>
+      </td>
+    </tr>
+  <% end %>
+</table>

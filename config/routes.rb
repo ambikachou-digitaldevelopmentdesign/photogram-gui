@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   get("/photos", { :controller => "photos", :action => "index" })
   get("/users", { :controller => "users", :action => "index" })
+  get("/", { :controller => "users", :action => "index" })
 end
